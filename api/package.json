@@ -1,0 +1,31 @@
+{
+  "name": "hackernews-backend",
+  "version": "0.1.0",
+  "description": "Backend for Hackernews ",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ts-node-dev --exit-child src/index.ts",
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "graphql-codegen --config codegen-config.ts"
+  },
+  "author": "Tauseef Hilal Tantary",
+  "license": "MIT",
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.11.17",
+    "prisma": "^5.9.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3",
+    "@graphql-codegen/typescript": "4.0.4",
+    "@graphql-codegen/typescript-resolvers": "4.0.4"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@prisma/client": "^5.9.1",
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
