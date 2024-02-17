@@ -1,5 +1,6 @@
 import { IncomingMessage } from "http";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { Link, User } from "../graphql/generated/types";
 const APP_SECRET = process.env.APP_SECRET;
 
 function getTokenPayload(token: string) {
@@ -24,4 +25,18 @@ export function getUserId(req?: IncomingMessage, authToken?: string): string {
   }
 
   throw new Error("Not authenticated");
+}
+
+export function getMockUser(): User {
+  return { id: "-1", name: "A", email: "B", links: [] };
+}
+
+export function getMockLink(): Link {
+  return {
+    id: "-1",
+    url: "A",
+    createdAt: new Date(),
+    description: "B",
+    votes: [],
+  };
 }

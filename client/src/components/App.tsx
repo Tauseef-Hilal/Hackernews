@@ -1,29 +1,26 @@
-import { useQuery } from "@apollo/client";
+import { Navigate, Route, Routes } from "react-router-dom";
 
-import LinkComponent from "./Link";
-import { GET_LINKS_QUERY } from "../lib/graphql/queries";
-import { FeedQuery } from "../lib/graphql/generated/graphql";
+import Header from "./Header";
+import CreateLink from "./CreateLink";
+import LinkList from "./LinkList";
+import Login from "./Login";
+import Search from "./Search";
 
-const App: React.FC = () => {
-  const { loading, error, data } = useQuery<FeedQuery>(GET_LINKS_QUERY);
-  const links = data?.feed ?? [];
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Oops! couldnt load links</p>;
-
+const App = () => {
   return (
-    <main>
-      <div>
-        {links.map((link) => (
-          <LinkComponent
-            key={link.id}
-            url={link.url}
-            description={link.description}
-            author={link.author?.name || ""}
-          />
-        ))}
+    <div className="center w85">
+      <Header />
+      <div className="ph3 pv1 background-gray">
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/new/1" />} />
+          <Route path="/create" element={<CreateLink />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/top" element={<LinkList />} />
+          <Route path="/new/:page" element={<LinkList />} />
+        </Routes>
       </div>
-    </main>
+    </div>
   );
 };
 

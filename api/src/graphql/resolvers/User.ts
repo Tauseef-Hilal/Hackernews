@@ -1,4 +1,4 @@
-import { UserResolvers } from "../generated/graphql";
+import { UserResolvers } from "../generated/types";
 
 const UserFieldResolvers: UserResolvers = {
   links: async (parent, _, context) => {
@@ -6,7 +6,11 @@ const UserFieldResolvers: UserResolvers = {
       where: { authorId: parseInt(parent.id) },
     });
 
-    return (await links).map((link) => ({ ...link, id: link.id.toString() }));
+    return (await links).map((link) => ({
+      ...link,
+      id: link.id.toString(),
+      votes: [],
+    }));
   },
 };
 
